@@ -1,0 +1,40 @@
+﻿@model Kursach.Models.Tovary
+
+<h3>Изменение данных служащего</h3>
+
+@using (Html.BeginForm())
+{
+    @Html.HiddenFor(model => model.Id)
+
+    <p>
+        Жанр <br />
+        @Html.EditorFor(model => model.Genre)
+    </p>
+
+    <p>
+        Название <br />
+        @Html.EditorFor(model => model.BookName)
+    </p>
+
+    <p>
+        Автор  <br />
+        @Html.EditorFor(model => model.Author)
+    </p>
+
+    <p>
+        Стоимость <br />
+        @Html.EditorFor(model => model.Price)
+    </p>
+
+    <p>
+        Кол-во <br />
+        @Html.EditorFor(model => model.Kol)
+    </p>
+    <p>
+        <input type="submit" value="Сохранить" />
+    </p>
+}
+
+<div>
+    @Html.ActionLink("Вернуться назад", "Librarian1")
+</div>

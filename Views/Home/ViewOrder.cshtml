@@ -1,0 +1,76 @@
+﻿@model Customer
+@{
+    ViewBag.Title = "Оформление бронирования";
+}
+<h2>Оформление бронирования</h2>
+<table class="table table-bordered table-primary">
+    <tr>
+        <th><p>№ книги</p></th>
+        <th><p>Жанр</p></th>
+        <th><p>Название книги</p></th>
+        <th><p>Автор </p></th>
+        <th><p>Цена</p></th>
+        <th><p>Кол-во</p></th>
+    </tr>
+
+    @foreach (var p in ViewBag.Korzinas as IEnumerable<Korzina>)
+    {
+        <tr>
+            <td><p>@p.Id</p></td>
+            <td><p>@p.Genre</p></td>
+            <td><p>@p.BookName</p></td>
+            <td><p>@p.Author</p></td>
+            <td><p>@p.Price</p></td>
+            <td><p>@p.Kol</p></td>
+            <td><a href="/Home/Cancel3/@p.Id" class="btn btn-danger">Удалить</a></td>
+        </tr>
+    }
+</table>
+
+
+<form asp-action="ViewOrder" method="post" class="form-horizontal">
+        <div class="form-group">
+            <label asp-for="CustomerName">Введите ваше имя: </label>
+        </div>
+        <div class="col-6">
+            <input asp-for="CustomerName" class="form-control"/>
+        </div>
+    <div class="form-group">
+        <label asp-for="CustomerId">Введите номер книги(в корзине): </label>
+    </div>
+    <div class="col-6">
+        <input asp-for="CustomerId" class="form-control" />
+    </div>
+    <input class="btn btn-primary" type="submit" value="Забронировать" style="margin-top: 10px;"/> 
+</form>
+
+<h2>Бронирование</h2>
+<table class="table table-bordered table-primary">
+    <tr>
+        <th><p>№ товара</p></th>
+        <th><p>Фамилия клиента</p></th>
+        <th><p>Жанр</p></th>
+        <th><p>Название книги</p></th>
+        <th><p>Автор</p></th>
+        <th><p>Цена</p></th>
+        <th><p>Кол-во</p></th>
+    </tr>
+
+
+    @foreach (var p in ViewBag.Orders as IEnumerable<Order>)
+    {
+        <tr>
+            <td><p>@p.Id</p></td>
+            <th><p>@p.CustomerName</p></th>
+            <td><p>@p.Genre</p></td>
+            <td><p>@p.BookName</p></td>
+            <td><p>@p.Author</p></td>
+            <td><p>@p.Price</p></td>
+            <td><p>@p.Kol</p></td>
+            <td><a href="/Home/Cancel1/@p.Id" class="btn btn-danger">Удалить</a></td>
+        </tr>
+    }
+</table>
+
+<a href="/Home/BackToTovars" class="btn btn-primary">В каталог</a>
+<a href="/Home/ViewKorzina" class="btn btn-primary" style="margin-left: 15px;">В корзину</a>

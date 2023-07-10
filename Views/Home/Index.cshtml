@@ -1,0 +1,126 @@
+﻿@model IEnumerable<Kursach.Models.Tovary>
+@{
+    ViewBag.Title = "Каталог книг";
+}
+
+<h2>Каталог книг</h2>
+<form asp-action="Index" method="get">
+    <div class="form-group">
+        <label for="SearchString">Поиск</label>
+        <input type="text" name="SearchString"
+               value="@ViewData["CurrentFilter"]" placeholder="Жанр,название,автор" />
+            <input type="submit" value="Поиск" class="btn btn-primary" />
+    </div>
+</form>
+
+@*<p>
+    @using (Html.BeginForm("Index", "Home", FormMethod.Get))
+    {
+        <b>Поиск по:</b>
+        @Html.RadioButton("Search by","Bookname") <text> Книге </text>
+        @Html.RadioButton("Search by","Genre") <text> Жанру</text> <br />
+        @Html.TextBox("search")
+        <input type="submit" value="Поиск" />
+    }
+</p>*@
+<br />
+
+
+@*<table class="table table-bordered table-primary">
+    <tr>
+        <th><p>№ книги</p></th>
+        <th><p>Жанр</p></th>
+        <th><p>Название книги</p></th>
+        <th><p>Автор </p></th>
+        <th><p>Цена</p></th>
+        <th><p>Кол-во</p></th>
+    </tr>
+
+
+    @foreach (var p in ViewBag.Tovarys as IEnumerable<Tovary>)
+    {
+        <tr>
+            <td><p>@p.Id</p></td>
+            <td><p>@p.Genre</p></td>
+            <td><p>@p.BookName</p></td>
+            <td><p>@p.Author</p></td>
+            <td><p>@p.Price</p></td>
+            <td><p>@p.Kol</p></td>
+            <td><a href="/Home/Korzina/@p.Id" class="btn btn-secondary">В корзину</a> </td>
+        </tr>
+    }
+</table>*@
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Id)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Genre)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.BookName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Author)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Price)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Kol)
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Id)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Genre)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.BookName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Author)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Price)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Kol)
+                </td>
+                <td><a href="/Home/Korzina/@item.Id" class="btn btn-secondary">В корзину</a> </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<a href="/Home/ViewKorzina" class="btn btn-primary ">Просмотр Корзины</a>
+
+@section scripts{
+    <script>
+          // Активация раскрывающегося списка выбора типа устройства
+          const selectDevs = document.getElementById("bookId");
+
+          selectDevs.onchange = e => {
+                document.getElementById('filterSubmit').click();
+        }
+
+
+        // Активация раскрывающегося списка выбора фирмы производителя
+        const selectFirms = document.getElementById("authorId");
+
+        selectFirms.onchange = e => {
+              document.getElementById('filterSubmit').click();
+        }
+    </script>
+}
+
+

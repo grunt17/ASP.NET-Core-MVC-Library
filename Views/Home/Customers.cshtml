@@ -1,0 +1,20 @@
+﻿@{
+    ViewBag.Title = "Клиентская база";
+}
+
+<h2>Клиентская база</h2>
+<table class="table table-bordered table-primary">
+    <tr>
+        <th><p>№</p></th>
+        <th><p>Фамилия</p></th>
+    </tr>
+
+    @foreach (var p in ViewBag.Customers as IEnumerable<Customer>)
+    {
+        <tr>
+            <td><p>@p.CustomerId</p></td>
+            <td><p>@p.CustomerName</p></td>
+            @*<td><a href="/Home/Cancel3/@p.CustomerId" class="btn btn-danger">Удалить</a></td>*@
+        </tr>
+    }
+</table>

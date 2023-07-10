@@ -1,0 +1,33 @@
+﻿@{
+    ViewBag.Title = "Кабинет библиотекаря";
+}
+
+<h2>Главная страница библиотекаря</h2>
+<table class="table table-bordered table-primary">
+    <tr>
+        <th><p>№ книги</p></th>
+        <th><p>Жанр</p></th>
+        <th><p>Название книги</p></th>
+        <th><p>Автор </p></th>
+        <th><p>Цена</p></th>
+        <th><p>Кол-во</p></th>
+    </tr>
+
+
+    @foreach (var p in ViewBag.Tovarys as IEnumerable<Tovary>)
+    {
+        <tr>
+            <td><p>@p.Id</p></td>
+            <td><p>@p.Genre</p></td>
+            <td><p>@p.BookName</p></td>
+            <td><p>@p.Author</p></td>
+            <td><p>@p.Price</p></td>
+            <td><p>@p.Kol</p></td>
+            <td><a href="/Home/Cancel5/@p.Id" class="btn btn-secondary">Удалить из бд</a> </td>
+            <td><a href="/Home/Edit/@p.Id" class="btn btn-secondary">Редактировать</a> </td>
+        </tr>
+    }
+</table>
+
+<a href="/Home/Create" class="btn btn-primary ">Добавить книгу</a>
+<a href="/Home/Showed" class="btn btn-primary ">Просмотр запросов</a>

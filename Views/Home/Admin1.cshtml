@@ -1,0 +1,27 @@
+﻿@{
+    ViewData["Title"] = "Страница админа";
+}
+<h2>База пользователей</h2>
+
+<table class="table table-bordered table-primary">
+    <tr>
+        <th><p>№ сотрудника</p></th>
+        <th><p>Email</p></th>
+        <th><p>Пароль</p></th>
+        <th><p>Роль </p></th>
+        <th><p>Возраст</p></th>
+    </tr>
+
+
+    @foreach (var p in ViewBag.Users as IEnumerable<User>)
+    {
+        <tr>
+            <td><p>@p.Id</p></td>
+            <td><p>@p.Email</p></td>
+            <td><p>@p.Password</p></td>
+            <td><p>@p.Role</p></td>
+            <td><p>@p.Age</p></td>
+            <td><a href="/Home/Cancel6/@p.Id" class="btn btn-secondary">Удалить пользователя</a> </td>
+        </tr>
+    }
+</table>
